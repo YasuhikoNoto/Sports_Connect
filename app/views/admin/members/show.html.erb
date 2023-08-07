@@ -1,0 +1,38 @@
+<h2><%= @member.name %>さんの会員詳細</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>会員画像</td>
+      <td><%= image_tag @member.get_member_image %></td>
+    </tr>
+    <tr>
+      <td>会員ID</td>
+      <td><%= @member.id %></td>
+    </tr>
+    <tr>
+      <td>氏名</td>
+      <td><%= @member.name %></td>
+    </tr>
+    <tr>
+      <td>登録日時</td>
+      <td><%= @member.created_at %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @member.email %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= @member.phone_number %></td>
+    </tr>
+    <tr>
+      <td>会員ステータス</td>
+      <td><%= @member.is_deleted %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to "編集する", edit_admin_member_path %>
+<%= link_to "投稿一覧を見る", admin_posts_path(@member_id) %>
+<%= link_to "コメント一覧を見る", admin_comments_path %>

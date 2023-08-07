@@ -1,0 +1,29 @@
+<h4>新規タグ一覧</h4>
+<%= form_with model: @tag, url: admin_tags_url do |f| %>
+<table>
+  <tbody>
+    <tr>
+      <td>種別</td>
+      <td><%= f.text_field :category %></td>
+    </tr>
+    <tr>
+      <td>タグ名</td>
+      <td><%= f.text_field :item %></td>
+    </tr>
+  </tbody>
+</table>
+<%= f.submit "追加する" %>
+<% end %>
+
+<h4>タグ一覧</h4>
+<% @tags.each do |tag| %>
+<table>
+  <tbody>
+    <tr>
+      <td><%= tag.category %></td>
+      <td><%= tag.item %></td>
+      <td><%= link_to "削除", admin_tag_path(tag), method: :delete %></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

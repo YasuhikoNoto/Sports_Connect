@@ -1,0 +1,26 @@
+<h2>会員一覧</h2>
+<table>
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>登録日</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>電話番号</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @members.each do |member| %>
+    <tr>
+      <td><%= member.id %></td>
+      <td><%= member.created_at %></td>
+      <td><%= link_to member.name, admin_member_path(member.id) %></td>
+      <td><%= member.email %></td>
+      <td><%= member.phone_number %></td>
+      <td><%= member.is_deleted %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @members %>

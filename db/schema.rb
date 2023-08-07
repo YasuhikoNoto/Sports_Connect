@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2023_08_04_172016) do
   create_table "tags", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "type", null: false
+    t.string "category", null: false
     t.string "item", null: false
   end
 

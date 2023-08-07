@@ -66,3 +66,5 @@ gem 'jquery-rails'
 gem 'pry-byebug', group: :development
 # 画像処理
 gem "image_processing", ">= 1.2"
+# 日本語化
+gem 'rails-i18n', '~> 6.0.0'

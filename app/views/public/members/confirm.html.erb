@@ -1,0 +1,5 @@
+<h4>本当に退会しますか？</h4>
+<p>退会すると全ての記録が失われます</p>
+
+<%= link_to "戻る", edit_member_path(@member) %>
+<%= link_to "退会する", members_leave_path, method: :patch, data: {confirm: "本当に退会しますか？"} %>
