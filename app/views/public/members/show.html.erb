@@ -1,0 +1,39 @@
+<% if @member == current_member %>
+  <h2>マイページ</h2>
+<% else %>
+  <h2><%= @member.name %>さんの詳細</h2>
+<% end %>
+
+<table>
+  <tbody>
+    <tr>
+      <td>会員画像</td>
+      <td><%= image_tag @member.get_member_image %></td>
+    </tr>
+    <tr>
+      <td>登録日時</td>
+      <td><%= @member.created_at %></td>
+    </tr>
+    <tr>
+      <td>氏名</td>
+      <td><%= @member.name %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @member.email %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= @member.phone_number %></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 対象の会員がした投稿一覧を表示させる。posts_pathのviewファイルにrequest refererで対応させられる？ -->
+<%= link_to "投稿一覧を見る", posts_path %>
+<% if @member == current_member %>
+  <%= link_to "編集する", edit_member_path(@member) %>
+<!-- 上記同様、posts_pathにブックマークした投稿のみ、通知が来た投稿のみ表示させる -->
+  <%= link_to "ブックマーク一覧を見る", posts_path %>
+  <%= link_to "通知を確認する", posts_path %>
+<% end %>

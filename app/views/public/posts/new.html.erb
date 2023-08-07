@@ -1,0 +1,11 @@
+<%= flash[:test] %>
+
+<%= form_with model: @post do |f| %>
+<h4>タイトル</h4>
+<%= f.text_field :title %>
+<h4>本文</h4>
+<%= f.text_area :body %>
+<h4>タグ選択</h4>
+
+<%= f.submit "投稿する" %>
+<% end %>
