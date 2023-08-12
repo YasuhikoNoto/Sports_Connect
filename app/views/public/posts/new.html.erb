@@ -6,6 +6,14 @@
 <h4>本文</h4>
 <%= f.text_area :body %>
 <h4>タグ選択</h4>
+<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :item) do |tag| %>
+  <%= tag.check_box %>
+  <%= tag.text %>
+<% end %>
+
+<!-- セレクトボックス形式 カテゴリごとにこちらで選択式にする？ -->
+<!--%= f.select :Tag_id, Tag.all.map{|tag| [tag.item, tag.id]}, {} %-->
+
 
 <%= f.submit "投稿する" %>
 <% end %>
