@@ -16,8 +16,9 @@ Rails.application.routes.draw do
     get 'members/confirm' => 'members#confirm'
     patch 'members/leave' => 'members#leave'
     resources :members, only: [:show, :edit, :update]
-    resources :posts, only: [:index, :new, :show, :update, :create]
-    resources :comments, only: [:new, :create]
+    resources :posts, only: [:index, :new, :show, :edit, :update, :create] do
+      resources :comments, only: [:new, :create, :destroy]
+    end
     resources :bookmarks, only: [:create, :destroy]
     get 'searches' => 'searches#index'
   end

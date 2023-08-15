@@ -1,0 +1,13 @@
+<table>
+  <tbody>
+    <% post.comments.each do |comment| %>
+    <tr>
+      <td>・<%= comment.body %></td>
+      <td>
+        <%= l comment.created_at, format: :"long" %>
+        :commented by <%= link_to comment.member.name, member_path(comment.member) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -2,7 +2,6 @@
 <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
 <%= @post.updated_at.strftime('%Y/%m/%d %H:%M') %>
 <%= @post.body %>
-<%= @tag.item %>
 <%= @post.member.name %>
 <%= @post.is_opened %>
 <%= link_to "投稿を削除する", admin_post_path(@post), method: :delete %>

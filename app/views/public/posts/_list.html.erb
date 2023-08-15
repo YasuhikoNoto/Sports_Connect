@@ -1,0 +1,14 @@
+<% posts.each do |post| %>
+  <div>
+    <%= link_to post.title, post_path(post.id) %><br>
+    投稿者:<%= post.member.name %><br>
+    タグ:
+    <% post.tags.each do |tag| %>
+      <%= tag.item %>
+    <% end %>
+    <br>
+    <%= post.body %><br>
+    <%= image_tag post.member.get_member_image %><br>
+    投稿日：<%= l post.created_at, format: :long %><br>
+    更新日：<%= l post.updated_at, format: :long %>
+<% end %>

@@ -5,7 +5,6 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @tag = @post.tag
   end
 
   def edit
