@@ -18,9 +18,9 @@ Rails.application.routes.draw do
     resources :members, only: [:show, :edit, :update]
     resources :posts, only: [:index, :new, :show, :edit, :update, :create] do
       resources :comments, only: [:new, :create, :destroy]
+      resources :bookmarks, only: [:create, :destroy]
     end
-    resources :bookmarks, only: [:create, :destroy]
-    get 'searches' => 'searches#index'
+    get 'searches' => 'searches#search'
   end
 
   namespace :admin do

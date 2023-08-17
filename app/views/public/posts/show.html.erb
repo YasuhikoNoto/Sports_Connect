@@ -16,6 +16,8 @@
 <%= link_to "投稿内容を編集する", edit_post_path %>
 <% end %>
 
+ブックマークする:<%= render "public/bookmarks/btn", post: @post %>
+
 <%= render "public/comments/index", post: @post %>
 <%= render "public/comments/form", post: @post, comment: @comment %>
 </div>

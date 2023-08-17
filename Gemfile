@@ -70,3 +70,5 @@ gem "image_processing", ">= 1.2"
 gem 'rails-i18n', '~> 6.0.0'
 # rails console 機能追加
 gem 'pry-rails'
+# 検索機能
+gem 'ransack'
