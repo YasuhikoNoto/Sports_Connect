@@ -16,10 +16,11 @@ Rails.application.routes.draw do
     get 'members/confirm' => 'members#confirm'
     patch 'members/leave' => 'members#leave'
     resources :members, only: [:show, :edit, :update]
-    resources :posts, only: [:index, :new, :show, :update, :create]
-    resources :comments, only: [:new, :create]
-    resources :bookmarks, only: [:create, :destroy]
-    get 'searches' => 'searches#index'
+    resources :posts, only: [:index, :new, :show, :edit, :update, :create] do
+      resources :comments, only: [:new, :create, :destroy]
+      resources :bookmarks, only: [:create, :destroy]
+    end
+    get 'searches' => 'searches#search'
   end
 
   namespace :admin do

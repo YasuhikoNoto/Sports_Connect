@@ -8,7 +8,7 @@ gem 'rails', '~> 6.1.7', '>= 6.1.7.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -68,3 +68,17 @@ gem 'pry-byebug', group: :development
 gem "image_processing", ">= 1.2"
 # 日本語化
 gem 'rails-i18n', '~> 6.0.0'
+# rails console 機能追加
+gem 'pry-rails'
+# 検索機能
+gem 'ransack'
+
+#デプロイ用 環境変数管理gem
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"

@@ -1,0 +1,9 @@
+<% if post.bookmarked_by?(current_member) %>
+  <%= link_to post_bookmark_path(post), method: :delete,  style: "color: red;" do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+  <% end %>
+<% else %>
+  <%= link_to post_bookmarks_path(post), method: :post do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+  <% end %>
+<% end %>

@@ -1,0 +1,23 @@
+<div>
+タイトル：<%= @post.title %>
+
+<p>登録タグ:</p>
+<% @post.tags.each do |tag| %>
+<%= tag.item %>
+<%= tag.aaa %>
+<% end %><br>
+
+投稿日:<%= l @post.created_at, format: :"long" %><br>
+更新日:<%= l @post.updated_at, format: :"long" %><br>
+本文:<%= @post.body %><br>
+投稿者名:<%= @post.member.name %><br>
+
+<% if @post.member.id == current_member.id %>
+<%= link_to "投稿内容を編集する", edit_post_path %>
+<% end %>
+
+ブックマークする:<%= render "public/bookmarks/btn", post: @post %>
+
+<%= render "public/comments/index", post: @post %>
+<%= render "public/comments/form", post: @post, comment: @comment %>
+</div>

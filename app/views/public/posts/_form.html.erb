@@ -1,0 +1,22 @@
+<!--form_withは自動でメソッドを使い分けるため指定edit/createで場合分けする必要なし-->
+<%= form_with model: post do |f| %>
+<h4>タイトル</h4>
+<%= f.text_field :title %>
+<h4>本文</h4>
+<%= f.text_area :body %>
+<h4>タグ選択</h4>
+<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :item) do |tag| %>
+  <%= tag.check_box %>
+  <%= tag.text %>
+<% end %>
+
+<!-- セレクトボックス形式 カテゴリごとにこちらで選択式にする？ -->
+<!--%= f.select :Tag_id, Tag.all.map{|tag| [tag.item, tag.id]}, {} %-->
+<h4>公開</h4>
+<%= f.radio_button :is_opened, "true" %> <%= f.label :is_deleted_true, "公開する" %>
+<%= f.radio_button :is_opened, "false" %> <%= f.label :is_deleted_false, "下書き保存" %>
+<br>
+<%= f.submit "投稿する" %>
+<% end %>
+
+<!--編集画面の場合はf.submitの表記を変える 課題-->

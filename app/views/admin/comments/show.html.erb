@@ -1,0 +1,5 @@
+<%= @comment.post.title %>
+<%= @comment.body %>
+<%= @comment.member.name %>
+<%= l @comment.created_at %>
+<%= link_to "コメントを削除する", admin_comment_path(@comment), method: :delete %>
