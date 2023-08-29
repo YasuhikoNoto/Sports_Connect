@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <h2><%= @member.name %>さんの会員情報編集</h2>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @member, url: admin_member_path, method: :patch do |f| %>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="col-3 border border-dark">会員画像</td>
+          <td class="col-9 border border-left-0 border-dark text-center"><%= image_tag @member.get_member_image(200,200) %><%= f.file_field :member_image, accept: 'image/*' %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">会員ID</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= @member.id %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">氏名</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">登録日時</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= l @member.created_at, format: :"long" %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">メールアドレス</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">電話番号</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= f.text_field :phone_number %></td>
+        </tr>
+        <tr>
+         <td class="col-3 border border-top-0 border-dark">会員ステータス</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center">
+            <%= f.radio_button :is_deleted, :false %> <%= f.label :is_deleted_false, "有効" %><br>
+            <%= f.radio_button :is_deleted, :true %> <%= f.label :is_deleted_true, "退会" %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= f.submit "編集内容を保存", class: "btn btn-success" %></td>
+          <td><%= link_to "戻る", admin_member_path, class: "btn btn-primary" %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+  </div>
+</div>

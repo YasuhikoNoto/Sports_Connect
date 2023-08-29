@@ -1,0 +1,15 @@
+<div class="container">
+  <div class ="row">
+    <div class ="col-3"></div>
+    <div class ="col-6 col-offset-3">
+      <h1 class="my-3 px-4 bg-warning text-danger text-center">本当に退会しますか？</h1>
+<p>退会すると全ての記録が失われます</p>
+         退会する場合は、「退会する」をクリックしてください。</p>
+      <div class="text-center">
+
+<%= link_to "戻る", edit_member_path(@member), class:"btn btn-primary"%>
+<%= link_to "退会する", members_leave_path, method: :patch, data: {confirm: "本当に退会しますか？"}, class:"btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

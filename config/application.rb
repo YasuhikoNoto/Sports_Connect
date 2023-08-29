@@ -18,5 +18,11 @@ module Portfolio
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    #日本語化(i18n導入)準備
+    config.i18n.default_locale = :ja
+
+    #タイムゾーンを日本時間に
+    config.time_zone = 'Tokyo'
   end
 end

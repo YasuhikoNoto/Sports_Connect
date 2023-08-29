@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Portfolio</title>
+    <title>Sports Connect</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,42 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#7fff00;">
+      <div class="col-lg-3">
+        <div class="navbar-brand mb-auto">
+          <%= link_to root_path do %>
+            <%= image_tag "logo.png", height: "80px" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-lg-9 mb-auto ml-lg-auto">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <% if admin_signed_in? %>
+              <li><%= link_to "会員一覧", admin_members_path, class: "btn btn-outline-dark m-3" %></li>
+              <li><%= link_to "投稿一覧", admin_posts_path, class: "btn btn-outline-dark m-3" %></li>
+              <li><%= link_to "コメント一覧", admin_comments_path, class: "btn btn-outline-dark m-3" %></li>
+              <li><%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark m-3" %></li>
+            <% else %>
+              <% if member_signed_in? %>
+                <li><%= link_to "マイページ", member_path(current_member), class: "btn btn-outline-dark m-3" %></li>
+                <li><%= link_to "投稿する", new_post_path, class: "btn btn-outline-dark m-3" %></li>
+                <li><%= link_to "投稿一覧", posts_path, class: "btn btn-outline-dark m-3" %></li>
+                <li><%= link_to "会員ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-outline-dark m-3" %></li>
+              <% else %>
+                <li><%= link_to "ログイン", new_member_session_path, class: "btn btn-outline-dark m-3" %></li>
+                <li><%= link_to "新規登録", new_member_registration_path, class: "btn btn-outline-dark m-3" %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </body>
+  <%= yield %>
 </html>

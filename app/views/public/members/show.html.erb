@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <% if @member == current_member %>
+      <h2>マイページ</h2>
+    <% else %>
+      <h2><%= @member.name %>さんの詳細</h2>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="col-3 border border-dark">会員画像</td>
+          <td class="col-9 border border-left-0 border-dark text-center"><%= image_tag @member.get_member_image(200,200) %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">登録日時</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= l @member.created_at, format: :"long" %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">氏名</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= @member.name %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">メールアドレス</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= @member.email %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">電話番号</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= @member.phone_number %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+
+  <div class="row">
+    <%= link_to "投稿一覧を見る", member_posts_path(@member), class: "btn btn-success mr-4" %>
+    <% if @member == current_member %>
+      <%= link_to "編集する", edit_member_path(@member), class: "btn btn-success mr-4" %>
+    <!-- 上記同様、posts_pathにブックマークした投稿のみ、通知が来た投稿のみ表示させる -->
+      <%= link_to "ブックマーク一覧を見る", bookmarked_posts_path(@member), class: "btn btn-success mr-4" %>
+    <% end %>
+  </div>
+</div>
+<!-- 対象の会員がした投稿一覧を表示させる。posts_pathのviewファイルにrequest refererで対応させられる？ -->

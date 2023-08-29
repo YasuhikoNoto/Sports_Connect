@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="font-weight-bold h4">新規タグ追加</div>
+  </div>
+
+  <div class="row">
+    <%= form_with model: @tag, url: admin_tags_url do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td>カテゴリー</td>
+            <td><%= f.text_field :category %></td>
+          </tr>
+          <tr>
+            <td>タグ名</td>
+            <td><%= f.text_field :item %></td>
+          </tr>
+        </tbody>
+      </table>
+    <%= f.submit "追加する", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="font-weight-bold h5">タグ一覧</div>
+  </div>
+
+  <div class="row">
+    <% @tags.each do |tag| %>
+      <table>
+        <thead>
+          <tr>
+            <th>カテゴリー</th>
+            <th>タグ名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= tag.category %></td>
+            <td><%= tag.item %></td>
+            <td><%= link_to "削除", admin_tag_path(tag), method: :delete %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
