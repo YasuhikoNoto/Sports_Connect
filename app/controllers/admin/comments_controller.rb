@@ -16,7 +16,7 @@ before_action :authenticate_admin!
 
   def member
     @member = Member.find(params[:id])
-    @posts = Post.all.order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
+    @posts = Post.all.order(updated_at: :desc, created_at: :desc).page(params[:page]).per(10)
   end
 
 end
