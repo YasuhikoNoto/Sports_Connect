@@ -4,6 +4,9 @@ class Public::PostsController < ApplicationController
   end
 
   def new
+    if current_member == nil
+      redirect_to new_member_session_path
+    end
     @post = Post.new
   end
 
@@ -14,7 +17,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    unless @post.member.id == current_member.id
+    unless @post.member == current_member
       redirect_to post_path(@post)
     end
   end
@@ -54,6 +57,15 @@ class Public::PostsController < ApplicationController
   def bookmarked
     @member = Member.find(params[:id])
     @posts = Post.all.order(updated_at: :desc, created_at: :desc).page(params[:page]).per(10)
+  end
+
+  def unopened
+    @member = Member.find(params[:id])
+    unless @member == current_member
+      redirect_to root_path
+    else
+      @posts = @member.posts.all.order(updated_at: :desc, created_at: :desc).page(params[:page]).per(10)
+    end
   end
 
   private
