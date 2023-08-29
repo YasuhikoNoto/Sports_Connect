@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -21,6 +21,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path
     else
+      flash[:update_failed] = "情報更新に失敗しました"
       render :edit
     end
   end
@@ -29,17 +30,32 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     if @post.save
-      redirect_to new_post_path
+      redirect_to post_path(@post)
     else
-      flash[:test] = "失敗"
+      flash[:test] = "投稿に失敗しました"
       redirect_to new_post_path
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
+  end
+
+  def member
+    @member = Member.find(params[:id]).order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
+  end
+
+  def bookmarked
+    @member = Member.find(params[:id])
+    @posts = Post.all.order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :member_id, :post_tag_id, tag_ids: [])
+    params.require(:post).permit(:title, :body, :member_id, :post_tag_id, :is_opened, tag_ids: [])
   end
 
 end

@@ -1,5 +1,30 @@
-<%= @comment.post.title %>
-<%= @comment.body %>
-<%= @comment.member.name %>
-<%= l @comment.created_at %>
-<%= link_to "コメントを削除する", admin_comment_path(@comment), method: :delete %>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div>投稿タイトル</div>
+      <div class="border border-dark">
+        <%= @comment.post.title %>
+      </div>
+      <br>
+      <div>コメント内容</div>
+      <div class="border border-dark">
+        <%= @comment.body %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="col-5 border border-top-0 border-dark">
+        投稿者名:<%= @comment.member.name %>
+      </div>
+      <div class="col-5 border border-top-0 border-dark">
+        投稿日時:<%= l @comment.created_at, format: :"long" %>
+      </div>
+      <div class="col-6 m-1">
+        <%= link_to "コメントを削除する", admin_comment_path(@comment), method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

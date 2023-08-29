@@ -8,7 +8,6 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
-  validates :is_opened, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
     ["body", "created_at", "id", "is_opened", "member_id", "title", "updated_at"]
@@ -19,7 +18,7 @@ class Post < ApplicationRecord
   end
 
   def bookmarked_by?(member)
-    bookmarks.where(member_id: member.id).exists?
+    bookmarks.where(member_id: member).exists?
   end
-
+  
 end

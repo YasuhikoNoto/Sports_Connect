@@ -1,0 +1,6 @@
+<span class="quick-drop">
+    <%= form_tag ajax_path, method: :get, remote: true do %>
+      <%= hidden_field_tag :id, tags.id %>
+      <%= select_tag :color, options_for_select(["Red", "Green", "Blue"], selected_color), class: "select-drop" %>
+    <% end %>
+</span>

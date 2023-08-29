@@ -22,6 +22,17 @@ class Admin::TagsController < ApplicationController
     end
   end
 
+  def search
+    @tags = Tag.all
+    @tag = Tag.new(tag_params)
+    if @tag.category.present?
+      @tag = Tag.where('category = ?', "#{@tag.category}}")
+    else
+      @tag = Tag.none
+    end
+      render :index
+  end
+
   private
 
   def tag_params
