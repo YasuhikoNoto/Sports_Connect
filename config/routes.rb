@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :members, only: [:show, :edit, :update]
     get 'posts/member/:id' => 'posts#member', as: 'member_posts'
     get 'posts/bookmarked/:id' => 'posts#bookmarked', as: 'bookmarked_posts'
+    get 'posts/unopened/:id' => 'posts#unopened', as: 'unopened_posts'
     resources :posts, only: [:index, :new, :show, :edit, :update, :create, :destroy] do
       resources :comments, only: [:new, :create, :destroy]
       resources :bookmarks, only: [:create, :destroy]
