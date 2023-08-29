@@ -1,4 +1,5 @@
 <div>
+  <br>投稿タイトルを検索する
   <%= search_form_for @q, url: searches_path do |f| %>
     <%= f.search_field :title_cont, class: "form-control" %>
     <%= f.submit class: "btn btn-primary" %>
