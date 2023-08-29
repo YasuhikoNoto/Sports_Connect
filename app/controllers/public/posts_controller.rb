@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   def index
-    @posts = Post.all.order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
+    @posts = Post.all.order(updated_at: :desc, created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
@@ -48,12 +48,12 @@ class Public::PostsController < ApplicationController
 
   def member
     @member = Member.find(params[:id])
-    @posts = @member.posts.all.order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
+    @posts = @member.posts.all.order(updated_at: :desc, created_at: :desc).page(params[:page]).per(10)
   end
 
   def bookmarked
     @member = Member.find(params[:id])
-    @posts = Post.all.order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
+    @posts = Post.all.order(updated_at: :desc, created_at: :desc).page(params[:page]).per(10)
   end
 
   private
