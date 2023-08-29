@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="h4"><%= current_member.name %>の下書き一覧</div>
+  </div>
+
+  <div class="row">
+  <% @member.posts.each do |post| %>
+  <% if post.is_opened == false %>
+    <div class="col-8">
+      <%= link_to post.title, post_path(post.id), class: "font-weight-bold h4" %><br>
+      <p class="text-muted m-0 h6">投稿者:<%= post.member.name %></p>
+      <p class="text-muted m-0 h6">
+        タグ:
+        <% post.tags.each do |tag| %>
+          ☑<%= tag.item %>
+        <% end %>
+      </p>
+      <%= post.body.truncate(50) %><br>
+    </div>
+    <div class="col-2">
+      <%= image_tag post.member.get_member_image(100,100) %>
+    </div>
+    <div class="col-2">
+      <p class="h6">
+        投稿日：<%= l post.created_at, format: :"yyyy/mm/dd" %><br>
+        更新日：<%= l post.updated_at, format: :"yyyy/mm/dd" %>
+      </p>
+    </div>
+  <% end %>
+  <% end %>
+  </div>
+  <div>
+    <%= paginate @posts %>
+  </div>
+
+  </div>
+</div>

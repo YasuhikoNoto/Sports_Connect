@@ -22,27 +22,27 @@
   </div>
 
   <div class="row">
-    <div class="font-weight-bold h5">タグ一覧</div>
+    <div class="font-weight-bold h5"><br>タグ一覧</div>
   </div>
 
   <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>カテゴリー</th>
+          <th>タグ名</th>
+          <th></th>
+        </tr>
+      </thead>
     <% @tags.each do |tag| %>
-      <table>
-        <thead>
-          <tr>
-            <th>カテゴリー</th>
-            <th>タグ名</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= tag.category %></td>
-            <td><%= tag.item %></td>
-            <td><%= link_to "削除", admin_tag_path(tag), method: :delete %></td>
-          </tr>
-        </tbody>
-      </table>
+      <tbody>
+        <tr>
+          <td><%= tag.category %></td>
+          <td><%= tag.item %></td>
+          <td><%= link_to "削除", admin_tag_path(tag), method: :delete %></td>
+        </tr>
+      </tbody>
     <% end %>
+    </table>
   </div>
 </div>
