@@ -1,9 +1,17 @@
-<h2>ようこそSports Connectへ!</h2>
-<p>メンバーを募集したい方はこちら　→　<%= link_to "投稿する", new_post_path %></p>
-<p>チームを探したい方はこちら　→　<%= link_to "検索する", searches_path %></p>
+<div class="container">
+  <div class="text-center m-3 h2">ようこそSports Connectへ!</div>
+  <div class="row">
+    <div class="col-3">
+      <div class="font-weight-bold">メンバーを募集したい方はこちら<br>
+           <%= link_to "投稿する", new_post_path, class: "btn btn-success" %></div><br>
+      <div class="font-weight-bold">チームを探したい方はこちらから検索
+        <%= render "layouts/search", q: @q %>
+      </div>
+    </div>
+    <div class="col-9">
+      <h2>新規投稿</h2>
+      <%= render "public/posts/list", posts: @posts %>
+    </div>
+  </div>
+</div>
 
-<%= render "layouts/search", q: @q %>
-
-<h2>新規投稿</h2>
-<%= render "public/posts/list", posts: @posts %>
-<%= paginate @posts %>

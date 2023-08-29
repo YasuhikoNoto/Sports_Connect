@@ -6,8 +6,4 @@ class Tag < ApplicationRecord
   validates :category, presence: true
   validates :item, presence: true
 
-
-  def aaa
-    "aaaaa"
-  end
 end

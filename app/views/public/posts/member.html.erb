@@ -1,6 +1,10 @@
 <div class="container">
   <div class="row">
-  <% posts.each do |post| %>
+    <div class="h4"><%= @member.name %>さんの投稿一覧</div>
+  </div>
+
+  <div class="row">
+  <% @member.posts.each do |post| %>
   <% if post.is_opened == true %>
     <div class="col-8">
       <%= link_to post.title, post_path(post.id), class: "font-weight-bold h4" %><br>
@@ -25,7 +29,8 @@
     <% end %>
   <% end %>
   <div>
-    <%= paginate posts %>
+    <%= paginate @posts %>
   </div>
+
   </div>
 </div>

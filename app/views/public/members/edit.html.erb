@@ -1,30 +1,36 @@
-<h2>会員詳細編集</h2>
-<%= form_with model: @member, url: member_path, method: :patch do |f| %>
-<table>
-  <tbody>
-    <tr>
-      <td>会員画像</td>
-      <td><%= image_tag @member.get_member_image %><%= f.file_field :member_image, accept: 'image/*' %></td>
-    </tr>
-    <tr>
-      <td>登録日時</td>
-      <td><%= @member.created_at %></td>
-    </tr>
-    <tr>
-      <td>氏名</td>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <td>メールアドレス</td>
-      <td><%= f.email_field :email %></td>
-    </tr>
-    <tr>
-      <td>電話番号</td>
-      <td><%= f.text_field :phone_number %></td>
-    </tr>
-  </tbody>
-</table>
-<%= f.submit "変更を保存する" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <h2>会員詳細編集</h2>
+  </div>
 
-<%= link_to "退会する", members_confirm_path %>
+  <div class="row">
+    <%= form_with model: @member, url: member_path, method: :patch do |f| %>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td class="col-3 border border-dark">会員画像</td>
+          <td class="col-9 border border-left-0 border-dark text-center"><%= image_tag @member.get_member_image(200,200) %><%= f.file_field :member_image, accept: 'image/*' %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">登録日時</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= l @member.created_at, format: :"long" %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">氏名</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">メールアドレス</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+          <td class="col-3 border border-top-0 border-dark">電話番号</td>
+          <td class="col-9 border border-left-0 border-top-0 border-dark text-center"><%= f.text_field :phone_number %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit "変更を保存する", class: "btn btn-primary mr-4" %>
+    <%= link_to "退会する", members_confirm_path, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>

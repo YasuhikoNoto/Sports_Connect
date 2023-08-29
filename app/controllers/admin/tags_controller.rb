@@ -1,4 +1,5 @@
 class Admin::TagsController < ApplicationController
+before_action :authenticate_admin!
   def index
     @tag = Tag.new
     @tags = Tag.all
@@ -20,6 +21,17 @@ class Admin::TagsController < ApplicationController
     else
       render :index
     end
+  end
+
+  def search
+    @tags = Tag.all
+    @tag = Tag.new(tag_params)
+    if @tag.category.present?
+      @tag = Tag.where('category = ?', "#{@tag.category}}")
+    else
+      @tag = Tag.none
+    end
+      render :index
   end
 
   private

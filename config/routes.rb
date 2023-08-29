@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     get 'members/confirm' => 'members#confirm'
     patch 'members/leave' => 'members#leave'
     resources :members, only: [:show, :edit, :update]
-    resources :posts, only: [:index, :new, :show, :edit, :update, :create] do
+    get 'posts/member/:id' => 'posts#member', as: 'member_posts'
+    get 'posts/bookmarked/:id' => 'posts#bookmarked', as: 'bookmarked_posts'
+    resources :posts, only: [:index, :new, :show, :edit, :update, :create, :destroy] do
       resources :comments, only: [:new, :create, :destroy]
       resources :bookmarks, only: [:create, :destroy]
     end
@@ -24,10 +26,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root :to => "homes#top"
+    root :to => "posts#index"
     resources :members, only: [:index, :show, :edit, :update]
+    get 'posts/member/:id' => 'posts#member', as: 'member_posts'
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
-    resources :comments, only: [:index, :show, :update, :destroy]
+    get 'comments/member/:id' => 'comments#member', as: 'member_comments'
+    resources :comments, only: [:index, :show, :destroy]
     resources :tags, only: [:index, :create, :destroy]
   end
 

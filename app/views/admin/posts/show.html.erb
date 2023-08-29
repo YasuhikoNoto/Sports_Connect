@@ -1,7 +1,60 @@
-<%= @post.title %>
-<%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
-<%= @post.updated_at.strftime('%Y/%m/%d %H:%M') %>
-<%= @post.body %>
-<%= @post.member.name %>
-<%= @post.is_opened %>
-<%= link_to "投稿を削除する", admin_post_path(@post), method: :delete %>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-9 border border-dark">
+      <div class="font-weight-bold h3">
+        <%= @post.title %>
+      </div>
+      <div class="h6">
+        登録タグ:
+        <% @post.tags.each do |tag| %>
+          ☑<%= tag.item %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-3 border border-left-0 border-dark">
+      投稿日：<%= l @post.created_at, format: :"long" %><br>
+      更新日：<%= l @post.updated_at, format: :"long" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 border border-top-0 border-dark p-3">
+      <%= @post.body %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4 border border-top-0 border-bottom-0 border-dark">
+      投稿者:<%= @post.member.name %>
+      <%= image_tag @post.member.get_member_image(100,100) %>
+    </div>
+    <div class="col-2 border border-top-0 border-left-0 border-bottom-0 border-dark p-3">
+      ステータス:<br>
+      <% if @post.is_opened == true %>
+        公開
+      <% else %>
+        非公開
+      <% end %>
+    </div>
+    <div class="col-6 mt-4">
+      <%= link_to "投稿を削除する", admin_post_path(@post), method: :delete, class: "btn btn-danger" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 border border-dark">
+      コメント一覧
+    </div>
+    <div class="col-12 border border-top-0 border-dark">
+      <% @post.comments.each do |comment| %>
+        ・<%= comment.body %><br>
+        (<%= l comment.created_at, format: :"long" %>) :commented by <%= comment.member.name %><br>
+      <% end %>
+    </div>
+
+
+  </div>
+
+  </div>
+</div>

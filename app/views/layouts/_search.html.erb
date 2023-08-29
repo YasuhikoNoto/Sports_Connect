@@ -1,6 +1,23 @@
 <div>
-  <%= search_form_for q do |f| %>
-    <%= f.search_field :title, class:"form-control" %>
-    <%= f.submit %>
+  <%= search_form_for @q, url: searches_path do |f| %>
+    <%= f.search_field :title_cont, class: "form-control" %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
+<br>
+<div>
+  タグで検索する
+  <%= form_with url: searches_path, local: true, method: :get do |f| %>
+    <div class="d-flex flex-row flex-wrap">
+      <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :item do |b| %>
+    <div class="mx-1">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+      <% end %>
+      <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
+    <i class="fas fa-search"></i>
+      <% end %>
+    </div>
   <% end %>
 </div>
