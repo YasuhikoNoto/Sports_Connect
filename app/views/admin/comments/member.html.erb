@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="h4">コメント一覧 全<%= @comments.count %>件</div>
+    <div class="h4"><%= @member.name %>さんのコメント一覧</div>
     <table class="table">
       <thead>
         <tr>
@@ -10,7 +10,7 @@
           <th>投稿タイトル</th>
         </tr>
       </thead>
-      <% @comments.each do |comment| %>
+      <% @member.comments.each do |comment| %>
       <tbody>
         <tr>
           <td><%= l comment.created_at, format: :"long" %></td>

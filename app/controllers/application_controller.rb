@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 before_action :search
+#before_action :authenticate_admin!, if: :admin_url  adminでadminのアクセス制限をかけたいが、原因不明のエラーが発生
+#暫定措置としてadminの各コントローラにて制限をかける
 
   def search
     @q = Post.ransack(params[:q])

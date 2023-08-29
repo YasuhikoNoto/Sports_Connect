@@ -26,10 +26,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root :to => "homes#top"
+    root :to => "posts#index"
     resources :members, only: [:index, :show, :edit, :update]
+    get 'posts/member/:id' => 'posts#member', as: 'member_posts'
     resources :posts, only: [:index, :show, :edit, :update, :destroy]
-    resources :comments, only: [:index, :show, :update, :destroy]
+    get 'comments/member/:id' => 'comments#member', as: 'member_comments'
+    resources :comments, only: [:index, :show, :destroy]
     resources :tags, only: [:index, :create, :destroy]
   end
 

@@ -14,6 +14,9 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    unless @post.member.id == current_member.id
+      redirect_to post_path(@post)
+    end
   end
 
   def update
@@ -44,7 +47,8 @@ class Public::PostsController < ApplicationController
   end
 
   def member
-    @member = Member.find(params[:id]).order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
+    @member = Member.find(params[:id])
+    @posts = @member.posts.all.order(updated_at: :desc,reated_at: :desc).page(params[:page]).per(10)
   end
 
   def bookmarked
