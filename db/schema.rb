@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_04_172016) do
+ActiveRecord::Schema.define(version: 2023_09_06_002602) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2023_08_04_172016) do
     t.string "title", null: false
     t.text "body", null: false
     t.boolean "is_opened", default: true, null: false
+    t.decimal "score", precision: 5, scale: 3
   end
 
   create_table "tags", force: :cascade do |t|
