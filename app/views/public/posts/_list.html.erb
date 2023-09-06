@@ -12,6 +12,7 @@
         <% end %>
       </p>
       <%= post.body.truncate(50) %><br>
+      <span class="sentiment-score">本文の感情分析スコア<%= post.score %></span>
     </div>
     <div class="col-2">
       <%= image_tag post.member.get_member_image(100,100) %>
